@@ -23,5 +23,7 @@ jobs:
           git config --global user.name "Cyan [Auto Commit]"
           git fetch --all
           git add -f dist
-          git commit -am "release"
-          git push origin --force main:release
+          git commit -am "release ${{ github.sha }}"
+          git checkout release
+          git merge main -m "merge ${{ github.sha }}"
+          git push origin release:release
