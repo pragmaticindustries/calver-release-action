@@ -11,10 +11,12 @@ async function run(): Promise<void> {
 
     const tags = await listTags()
     const versionPrefix = generateVersionPrefix()
+
     const matchedVersions = tags
       .map(it => it.name)
       .filter(it => matchVersionPattern(it))
       .filter(it => it.startsWith(versionPrefix))
+
     let newVersion: string
     if (matchedVersions.length > 0) {
       const descSortFn = (a: number, b: number): number => b - a
