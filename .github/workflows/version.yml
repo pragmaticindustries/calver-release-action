@@ -1,0 +1,27 @@
+name: 'version'
+on:
+  push:
+    branches:
+      - main
+jobs:
+  version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: 'npm'
+      - run: |
+          npm install
+          npm run build
+          npm run package
+      - name: release
+        run: |
+          set -eux
+          git config --global user.email "me@cyan.technology"
+          git config --global user.name "Cyan [Auto Commit]"
+          git fetch --all
+          git add -f dist
+          git commit -am "release"
+          git push origin --force main:release
