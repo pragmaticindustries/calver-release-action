@@ -1,12 +1,10 @@
 name: 'build-test'
-on: # rebuild any PRs and main branch changes
-  pull_request:
+on:
   push:
     branches:
       - main
-
 jobs:
-  build: # make sure build/ci work properly
+  test:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -16,9 +14,12 @@ jobs:
           cache: 'npm'
       - run: |
           npm install
-      - run: |
           npm run all
-  test: # make sure the action works on a clean machine without building
+      - uses: ./
+        with:
+          dry_run: true
+          github_token: ${{secrets.GITHUB_TOKEN}}
+  version:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -30,7 +31,11 @@ jobs:
           npm install
           npm run build
           npm run package
-      - uses: ./
-        with:
-          dry_run: true
-          github_token: ${{secrets.GITHUB_TOKEN}}
+      - name: release
+        run: |
+          git config --global user.email "me@cyan.technology"
+          git config --global user.name "Cyan [Auto Commit]"
+          git fetch --all
+          git add -f dist
+          git commit -am "release"
+          git push origin --force main:release
