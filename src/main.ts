@@ -24,7 +24,7 @@ async function run(): Promise<void> {
       newVersion = `${versionPrefix}1`
     }
     core.info(`New version: ${newVersion}`)
-
+    core.setOutput('version', newVersion)
     if (!isDryRun) {
       const releaseUrl = await createRelease(newVersion)
       core.setOutput('url', releaseUrl)

@@ -28,7 +28,7 @@ jobs:
           cache: 'npm'
       - run: |
           npm install
-          npm run all
+          npm run build
           npm run package
       - uses: ./
         with:
