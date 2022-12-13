@@ -23,4 +23,4 @@ jobs:
           git config --global user.name "Cyan [Auto Commit]"
           git add -f dist
           git commit -am "release"
-          git push origin release
+          git push -f origin release
