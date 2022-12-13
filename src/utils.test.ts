@@ -1,5 +1,5 @@
 import {afterEach, beforeEach, describe, expect, it} from '@jest/globals'
-import {generateVersionPrefix, matchVersionPattern} from './utils'
+import {generateVersionPrefix, matchVersionPattern, toBoolean} from './utils'
 import * as sinon from 'sinon'
 
 describe('matchVersionPattern', () => {
@@ -43,5 +43,17 @@ describe('generateVersionPrefix', () => {
   it('generates YYYY.MM.DD.', () => {
     expect(generateVersionPrefix()).toMatch(/\d{4}\.\d{2}\.\d{2}./)
     expect(generateVersionPrefix()).toBe('2017.01.01.')
+  })
+})
+
+describe('toBoolean', () => {
+  it('true string should be converted to true', () => {
+    expect(toBoolean('true')).toBe(true)
+  })
+  it('false string should be converted to false', () => {
+    expect(toBoolean('false')).toBe(false)
+  })
+  it('any string except true should be converted to false', () => {
+    expect(toBoolean('any')).toBe(false)
   })
 })

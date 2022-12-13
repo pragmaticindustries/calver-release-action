@@ -9,6 +9,18 @@ inputs:
     required: false
     default: 'false'
     description: 'Whether to publish a release or just print supposed version'
+  generate_release_notes:
+    required: false
+    default: 'true'
+    description: 'Whether to generate release notes'
+outputs:
+  version:
+    description: 'Generated string of new version'
+  url:
+    description: 'Release URL'
 runs:
   using: node16
   main: 'dist/index.js'
+branding:
+  icon: 'arrow-up-circle'
+  color: 'blue'

@@ -51,12 +51,15 @@ export async function listTags(
   return listTags([...fetchedTags, ...tags.data], page + 1)
 }
 
-export async function createRelease(tagName: string): Promise<Release> {
+export async function createRelease(
+  tagName: string,
+  isGenerateReleaseNotes: boolean
+): Promise<Release> {
   const octokit = getOctokitSingleton()
   return octokit.rest.repos.createRelease({
     tag_name: tagName,
     name: `Release ver. ${tagName}`,
-    generate_release_notes: true,
+    generate_release_notes: isGenerateReleaseNotes,
     target_commitish: context.sha,
     ...context.repo
   })

@@ -12,3 +12,7 @@ export function generateVersionPrefix(): string {
     day: '2-digit'
   })}.`
 }
+
+export function toBoolean(str: string): boolean {
+  return /true/i.test(str)
+}

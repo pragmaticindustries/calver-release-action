@@ -1,10 +1,13 @@
 import * as core from '@actions/core'
 import {createRelease, listTags} from './github'
-import {generateVersionPrefix, matchVersionPattern} from './utils'
+import {generateVersionPrefix, matchVersionPattern, toBoolean} from './utils'
 
 async function run(): Promise<void> {
   try {
-    const isDryRun = /true/i.test(core.getInput('dry_run'))
+    const isDryRun = toBoolean(core.getInput('dry_run'))
+    const isGenerateReleaseNotes = toBoolean(
+      core.getInput('generate_release_notes')
+    )
 
     const tags = await listTags()
     const versionPrefix = generateVersionPrefix()
@@ -26,7 +29,7 @@ async function run(): Promise<void> {
     core.info(`New version: ${newVersion}`)
     core.setOutput('version', newVersion)
     if (!isDryRun) {
-      const releaseUrl = await createRelease(newVersion)
+      const releaseUrl = await createRelease(newVersion, isGenerateReleaseNotes)
       core.setOutput('url', releaseUrl)
     }
   } catch (e) {
