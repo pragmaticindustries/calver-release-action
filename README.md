@@ -35,12 +35,13 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
-      - uses: cho0o0/calver-release-action@2022.12.13.1
+      - uses: cho0o0/calver-release-action@2022.12.13.6
         with:
           generate_release_notes: true
           dry_run: false
           # Do not use GITHUB_TOKEN if you want to trigger other workflows
           github_token: ${{secrets.GITHUB_TOKEN}}
+          timezone: 'utc'
 ```
 
 ## Development
