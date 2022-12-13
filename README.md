@@ -11,12 +11,13 @@
 ### Inputs
 
 - github_token (*REQUIRED*): GitHub token to be used for this action
-- dry_run (*OPTIONAL*): Whether to publish a release or just print supposed version (default: false)
-- generate_release_notes: (*OPTIONAL*): Whether to generate release notes (default: true)
+- dry_run (*OPTIONAL*): Whether to publish a release or just print supposed version (default: `false`)
+- generate_release_notes: (*OPTIONAL*): Whether to generate release notes (default: `true`)
+- timezone: (*OPTIONAL*): Timezone to be used for version generations (default: `utc`; example: `Asia/Tokyo`)
 
 ### Outputs
 
-- version: generated version string (currently only `YYYY.0M.0D.MINOR` is supported and GitHub Action Runner's timezone is used)
+- version: generated version string (currently only `YYYY.0M.0D.MINOR` is supported)
 - url: GitHub url for the published release
 
 ### Example

@@ -41,8 +41,12 @@ describe('generateVersionPrefix', () => {
     clock.restore()
   })
   it('generates YYYY.MM.DD.', () => {
-    expect(generateVersionPrefix()).toMatch(/\d{4}\.\d{2}\.\d{2}./)
-    expect(generateVersionPrefix()).toBe('2017.01.01.')
+    expect(generateVersionPrefix('utc')).toMatch(/\d{4}\.\d{2}\.\d{2}./)
+    expect(generateVersionPrefix('utc')).toBe('2017.01.01.')
+  })
+  it('supports different timezones', () => {
+    expect(generateVersionPrefix('America/Los_Angeles')).toBe('2016.12.31')
+    expect(generateVersionPrefix('Australia/Sydney')).toBe('2017.01.01')
   })
 })
 

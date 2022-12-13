@@ -8,9 +8,10 @@ async function run(): Promise<void> {
     const isGenerateReleaseNotes = toBoolean(
       core.getInput('generate_release_notes')
     )
+    const timezone = core.getInput('timezone')
 
     const tags = await listTags()
-    const versionPrefix = generateVersionPrefix()
+    const versionPrefix = generateVersionPrefix(timezone)
 
     const matchedVersions = tags
       .map(it => it.name)

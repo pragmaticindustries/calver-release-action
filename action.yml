@@ -13,6 +13,10 @@ inputs:
     required: false
     default: 'true'
     description: 'Whether to generate release notes'
+  timezone:
+    required: false
+    default: 'utc'
+    description: 'timezone to be used for version generation'
 outputs:
   version:
     description: 'Generated string of new version'

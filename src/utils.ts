@@ -4,13 +4,16 @@ export function matchVersionPattern(str: string): boolean {
   return versionPattern.test(str)
 }
 
-export function generateVersionPrefix(): string {
-  const date = new Date()
-  return `${date.getFullYear()}.${date.toLocaleString('default', {
-    month: '2-digit'
-  })}.${date.toLocaleString('default', {
-    day: '2-digit'
-  })}.`
+export function generateVersionPrefix(timezone: string): string {
+  const dateParts = new Intl.DateTimeFormat('default', {
+    day: '2-digit',
+    month: '2-digit',
+    year: 'numeric',
+    timeZone: timezone
+  }).formatToParts(new Date())
+  return `${dateParts.find(it => it.type === 'year')?.value}.${
+    dateParts.find(it => it.type === 'month')?.value
+  }.${dateParts.find(it => it.type === 'day')?.value}.`
 }
 
 export function toBoolean(str: string): boolean {
