@@ -24,8 +24,6 @@ jobs:
           git fetch --all
           git add -f dist
           git commit -am "release ${{ github.sha }}"
-          sleep 1
           git checkout release
-          git merge -X theirs main -m "merge ${{ github.sha }}"
-          sleep 1
+          git merge --allow-unrelated-histories -X theirs main -m "merge ${{ github.sha }}"
           git push origin release:release
