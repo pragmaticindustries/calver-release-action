@@ -19,9 +19,10 @@ jobs:
           npm run package
       - name: release
         run: |
-          git fetch --all
           git config --global user.email "me@cyan.technology"
           git config --global user.name "Cyan [Auto Commit]"
+          git fetch --all
+          git checkout release
           git add -f dist
           git commit -am "release"
           git push -f origin release
