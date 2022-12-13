@@ -45,8 +45,8 @@ describe('generateVersionPrefix', () => {
     expect(generateVersionPrefix('utc')).toBe('2017.01.01.')
   })
   it('supports different timezones', () => {
-    expect(generateVersionPrefix('America/Los_Angeles')).toBe('2016.12.31')
-    expect(generateVersionPrefix('Australia/Sydney')).toBe('2017.01.01')
+    expect(generateVersionPrefix('America/Los_Angeles')).toBe('2016.12.31.')
+    expect(generateVersionPrefix('Australia/Sydney')).toBe('2017.01.01.')
   })
 })
 

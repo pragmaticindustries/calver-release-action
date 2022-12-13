@@ -21,4 +21,5 @@ jobs:
         with:
           dry_run: true
           github_token: ${{secrets.GITHUB_TOKEN}}
+          timezone: Asia/Shanghai
       - run: echo ${{ steps.calver.outputs.version }}
