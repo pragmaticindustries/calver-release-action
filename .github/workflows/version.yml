@@ -24,6 +24,8 @@ jobs:
           git fetch --all
           git add -f dist
           git commit -am "release ${{ github.sha }}"
+          sleep 1
           git checkout release
-          git merge main -m "merge ${{ github.sha }}"
+          git merge -X theirs main -m "merge ${{ github.sha }}"
+          sleep 1
           git push origin release:release
