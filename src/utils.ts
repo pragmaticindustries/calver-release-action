@@ -1,4 +1,4 @@
-const versionPattern = /\d{4}\.\d{2}\.\d{2}.\d{1,5}/
+const versionPattern = /\d{4}\.\d{2}\.\d{2}.\d{1,5}$/
 
 export function matchVersionPattern(str: string): boolean {
   return versionPattern.test(str)
