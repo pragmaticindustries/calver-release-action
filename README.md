@@ -16,7 +16,7 @@
 
 ### Outputs
 
-- version: generated version string (currently only `YYYY.0M.0D.MINOR` is supported)
+- version: generated version string (currently only `YYYY.0M.0D.MINOR` is supported and GitHub Action Runner's timezone is used)
 - url: GitHub url for the published release
 
 ### Example
