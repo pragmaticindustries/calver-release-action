@@ -23,7 +23,7 @@ async function run(): Promise<void> {
     } else {
       newVersion = `${versionPrefix}1`
     }
-    core.debug(`New version: ${newVersion}`)
+    core.info(`New version: ${newVersion}`)
 
     if (!isDryRun) {
       const releaseUrl = await createRelease(newVersion)
