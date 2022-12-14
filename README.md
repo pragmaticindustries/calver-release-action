@@ -35,7 +35,7 @@ jobs:
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v3
-      - uses: cho0o0/calver-release-action@2022.12.13.6
+      - uses: cho0o0/calver-release-action@2022.12.14.1
         with:
           generate_release_notes: true
           dry_run: false
