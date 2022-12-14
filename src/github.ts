@@ -27,7 +27,7 @@ function getOctokitSingleton(): ReturnType<typeof getOctokit> {
   if (octokitSingleton) {
     return octokitSingleton
   }
-  const githubToken = core.getInput('github_token')
+  const githubToken = core.getInput('api_token')
   octokitSingleton = getOctokit(githubToken)
   return octokitSingleton
 }

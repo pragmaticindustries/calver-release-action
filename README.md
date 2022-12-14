@@ -10,7 +10,7 @@
 
 ### Inputs
 
-- github_token (*REQUIRED*): GitHub token to be used for this action
+- api_token (*REQUIRED*): GitHub token to be used for this action
 - dry_run (*OPTIONAL*): Whether to publish a release or just print supposed version (default: `false`)
 - generate_release_notes: (*OPTIONAL*): Whether to generate release notes (default: `true`)
 - timezone: (*OPTIONAL*): Timezone to be used for version generations (default: `utc`; example: `Asia/Tokyo`)
@@ -40,8 +40,8 @@ jobs:
           generate_release_notes: true
           dry_run: false
           # Do not use GITHUB_TOKEN if you want to trigger other workflows
-          github_token: ${{secrets.GITHUB_TOKEN}}
           timezone: 'utc'
+          api_token: ${{secrets.GITHUB_TOKEN}}
 ```
 
 ## Development
@@ -71,5 +71,5 @@ You can now validate the action by referencing `./` in a workflow in your repo (
 uses: ./
 with:
   dry_run: true
-  github_token: ${{secrets.GITHUB_TOKEN}}
+  api_token: ${{secrets.GITHUB_TOKEN}}
 ```

@@ -14,4 +14,4 @@ jobs:
         id: calver
         with:
           dry_run: false
-          github_token: ${{secrets.GITHUB_TOKEN}}
+          api_token: ${{secrets.GITHUB_TOKEN}}

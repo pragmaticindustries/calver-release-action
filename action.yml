@@ -2,7 +2,7 @@ name: 'calver-release-action'
 description: 'GitHub Action to generate Calver release'
 author: 'cho0o0'
 inputs:
-  github_token:
+  api_token:
     required: true
     description: 'GitHub token to be used'
   dry_run:
