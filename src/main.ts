@@ -1,6 +1,11 @@
 import * as core from '@actions/core'
 import {createRelease, listTags} from './github'
-import {generateVersionPrefix, matchVersionPattern, toBoolean} from './utils'
+import {
+  generateReleaseTitle,
+  generateVersionPrefix,
+  matchVersionPattern,
+  toBoolean
+} from './utils'
 
 async function run(): Promise<void> {
   try {
@@ -10,6 +15,7 @@ async function run(): Promise<void> {
     )
     const timezone = core.getInput('timezone')
     const targetCommitish = core.getInput('target_commitish')
+    const releaseTitleFormat = core.getInput('release_title')
 
     const tags = await listTags()
     const versionPrefix = generateVersionPrefix(timezone)
@@ -32,11 +38,14 @@ async function run(): Promise<void> {
     }
     core.info(`New version: ${newVersion}`)
     core.setOutput('version', newVersion)
+    const releaseTitle = generateReleaseTitle(releaseTitleFormat, newVersion)
+    core.setOutput('title', releaseTitle)
     if (!isDryRun) {
       const releaseUrl = await createRelease(
         newVersion,
         isGenerateReleaseNotes,
-        targetCommitish
+        targetCommitish,
+        releaseTitle
       )
       core.setOutput('url', releaseUrl)
     }

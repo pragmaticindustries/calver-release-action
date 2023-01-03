@@ -21,7 +21,10 @@ jobs:
         with:
           api_token: ${{secrets.GITHUB_TOKEN}}
           dry_run: true
-      - run: echo ${{ steps.calver.outputs.version }}
+      - run: |
+          echo "version: ${{ steps.calver.outputs.version }}"
+          echo "title: ${{ steps.calver.outputs.title }}"
+          [[ "${{ steps.calver.outputs.title }}" == "Release ver. ${{ steps.calver.outputs.version }}" ]] && exit 0 || exit 1
       - uses: ./
         id: calver_with_parameters
         with:
@@ -30,6 +33,10 @@ jobs:
           generate_release_notes: false
           timezone: Asia/Shanghai
           target_commitish: ${{ github.sha }}
+          release_title: '${version}'
       - run: echo ${{ steps.calver_with_parameters.outputs.version }}
-
+      - run: |
+          echo "version: ${{ steps.calver_with_parameters.outputs.version }}"
+          echo "title: ${{ steps.calver_with_parameters.outputs.title }}"
+          [[ "${{ steps.calver_with_parameters.outputs.version }}" == "${{ steps.calver_with_parameters.outputs.title }}" ]] && exit 0 || exit 1
 

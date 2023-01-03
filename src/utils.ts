@@ -19,3 +19,10 @@ export function generateVersionPrefix(timezone: string): string {
 export function toBoolean(str: string): boolean {
   return /true/i.test(str)
 }
+
+export function generateReleaseTitle(
+  titleFormat: string,
+  version = ''
+): string {
+  return titleFormat.replace(/\$\{version}/g, version)
+}

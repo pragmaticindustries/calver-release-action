@@ -54,7 +54,8 @@ export async function listTags(
 export async function createRelease(
   tagName: string,
   isGenerateReleaseNotes: boolean,
-  targetCommitish: string
+  targetCommitish: string,
+  releaseName: string
 ): Promise<Release> {
   const octokit = getOctokitSingleton()
   const releaseCommitish =
@@ -62,7 +63,7 @@ export async function createRelease(
   core.info(`Create release based on ${releaseCommitish}`)
   return octokit.rest.repos.createRelease({
     tag_name: tagName,
-    name: `Release ver. ${tagName}`,
+    name: releaseName,
     generate_release_notes: isGenerateReleaseNotes,
     target_commitish: releaseCommitish,
     ...context.repo

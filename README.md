@@ -15,11 +15,13 @@
 - generate_release_notes (*OPTIONAL*): Whether to generate release notes (default: `true`)
 - timezone (*OPTIONAL*): Timezone to be used for version generations (default: `utc`; example: `Asia/Tokyo`)
 - target_commitish (*OPTIONAL*): Target commitish to be used for release. The default value is SHA of current workflow context. (example: `78cb8a7`/`main`)
+- release_title (*OPTIONAL*): Title format for the release. ${version} can be used and replaced as the generated version string. (default: `Release ver. ${version}`; example: `New Release: ${version}`)
 
 ### Outputs
 
 - version: Generated string of new version (currently only `YYYY.0M.0D.MINOR` is supported)
 - url: GitHub url for the published release
+- title: Generated string of the release title
 
 ### Example
 
@@ -43,6 +45,7 @@ jobs:
           # Do not use GITHUB_TOKEN if you want to trigger other workflows
           timezone: 'utc'
           api_token: ${{secrets.GITHUB_TOKEN}}
+          release_title: '${version}'
 ```
 
 ## Development
