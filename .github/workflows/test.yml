@@ -19,7 +19,17 @@ jobs:
       - uses: ./
         id: calver
         with:
-          dry_run: true
           api_token: ${{secrets.GITHUB_TOKEN}}
-          timezone: Asia/Shanghai
+          dry_run: true
       - run: echo ${{ steps.calver.outputs.version }}
+      - uses: ./
+        id: calver_with_parameters
+        with:
+          api_token: ${{secrets.GITHUB_TOKEN}}
+          dry_run: true
+          generate_release_notes: false
+          timezone: Asia/Shanghai
+          target_commitish: ${{ github.sha }}
+      - run: echo ${{ steps.calver_with_parameters.outputs.version }}
+
+

@@ -9,6 +9,7 @@ async function run(): Promise<void> {
       core.getInput('generate_release_notes')
     )
     const timezone = core.getInput('timezone')
+    const targetCommitish = core.getInput('target_commitish')
 
     const tags = await listTags()
     const versionPrefix = generateVersionPrefix(timezone)
@@ -32,7 +33,11 @@ async function run(): Promise<void> {
     core.info(`New version: ${newVersion}`)
     core.setOutput('version', newVersion)
     if (!isDryRun) {
-      const releaseUrl = await createRelease(newVersion, isGenerateReleaseNotes)
+      const releaseUrl = await createRelease(
+        newVersion,
+        isGenerateReleaseNotes,
+        targetCommitish
+      )
       core.setOutput('url', releaseUrl)
     }
   } catch (e) {

@@ -12,12 +12,13 @@
 
 - api_token (*REQUIRED*): GitHub token to be used for this action
 - dry_run (*OPTIONAL*): Whether to publish a release or just print supposed version (default: `false`)
-- generate_release_notes: (*OPTIONAL*): Whether to generate release notes (default: `true`)
-- timezone: (*OPTIONAL*): Timezone to be used for version generations (default: `utc`; example: `Asia/Tokyo`)
+- generate_release_notes (*OPTIONAL*): Whether to generate release notes (default: `true`)
+- timezone (*OPTIONAL*): Timezone to be used for version generations (default: `utc`; example: `Asia/Tokyo`)
+- target_commitish (*OPTIONAL*): Target commitish to be used for release. The default value is SHA of current workflow context. (example: `78cb8a7`/`main`)
 
 ### Outputs
 
-- version: generated version string (currently only `YYYY.0M.0D.MINOR` is supported)
+- version: Generated string of new version (currently only `YYYY.0M.0D.MINOR` is supported)
 - url: GitHub url for the published release
 
 ### Example
@@ -48,7 +49,7 @@ jobs:
 
 > First, you'll need to have a reasonably modern version of `node` handy. This won't work with versions older than 9, for instance.
 
-Install the dependencies  
+Install the dependencies
 ```bash
 $ npm install
 ```

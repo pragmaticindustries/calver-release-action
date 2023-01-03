@@ -4,7 +4,7 @@ author: 'cho0o0'
 inputs:
   api_token:
     required: true
-    description: 'GitHub token to be used'
+    description: 'GitHub token to be used for this action'
   dry_run:
     required: false
     default: 'false'
@@ -16,12 +16,15 @@ inputs:
   timezone:
     required: false
     default: 'utc'
-    description: 'timezone to be used for version generation'
+    description: 'Timezone to be used for version generations'
+  target_commitish:
+    required: false
+    description: 'Target commitish to be used for release. The default value is SHA of current workflow context.'
 outputs:
   version:
     description: 'Generated string of new version'
   url:
-    description: 'Release URL'
+    description: 'GitHub url for the published release'
 runs:
   using: node16
   main: 'dist/index.js'
