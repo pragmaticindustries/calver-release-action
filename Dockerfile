@@ -5,10 +5,10 @@ LABEL "org.opencontainers.image.description"="GitHub actoion for custom CalVer"
 LABEL "repository"="https://github.com/pragmaticindustries/calver-release-action"
 LABEL "maintainer"="pragmatic industries"
 
-COPY . ./
+WORKDIR /app
+COPY . .
 RUN npm install
 RUN npm run build
 
-COPY ./dist /dist
-WORKDIR /dist
+WORKDIR /app/dist
 CMD ["node", "index.js"]
