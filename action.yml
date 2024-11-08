@@ -1,4 +1,4 @@
-name: 'calver-release-action'
+name: 'pragmatic-calver-release-action'
 description: 'GitHub Action to generate Calver release'
 author: 'cho0o0'
 inputs:
@@ -32,8 +32,8 @@ outputs:
   title:
     description: 'Generated string of the release title'
 runs:
-  using: node16
-  main: 'dist/index.js'
+  using: 'docker'
+  image: 'Dockerfile'
 branding:
   icon: 'arrow-up-circle'
   color: 'blue'
