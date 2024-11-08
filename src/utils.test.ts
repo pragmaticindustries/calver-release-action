@@ -26,8 +26,8 @@ describe('matchVersionPattern', () => {
     it('CalVer with non-digit minor', () => {
       expect(matchVersionPattern('22.12.a')).toBe(false)
     })
-    it('CalVer with year-earlier-than-2000', () => {
-      expect(matchVersionPattern('99.12.1')).toBe(false)
+    it('CalVer with year in YYYY format', () => {
+      expect(matchVersionPattern('2024.12.1')).toBe(false)
     })
   })
 })
