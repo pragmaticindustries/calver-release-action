@@ -10,5 +10,4 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-WORKDIR /app/dist
-CMD ["node", "index.js"]
+CMD ["node", "/app/dist/index.js"]
