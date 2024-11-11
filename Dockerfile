@@ -8,7 +8,8 @@ LABEL "maintainer"="pragmatic industries"
 WORKDIR /app
 COPY . .
 RUN npm install
-RUN npm run build
+RUN npm run package
+RUN ls -al /app/dist
 
 COPY "entrypoint.sh" "/usr/bin/entrypoint"
 ENTRYPOINT ["entrypoint"]
