@@ -10,4 +10,6 @@ COPY . .
 RUN npm install
 RUN npm run build
 
-CMD ["node", "/app/dist/index.js"]
+COPY "entrypoint.sh" "/usr/bin/entrypoint"
+ENTRYPOINT ["entrypoint"]
+CMD [""]
